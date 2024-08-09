@@ -1,13 +1,14 @@
 //capturando valores no document
-const menu = document.querySelector('#removeClass')
-const removeClass = document.querySelector('#active')
-const openMenu = document.querySelector('.openMenu')
+const menuButton = document.querySelector("#removeClass");
+const menuModal = document.querySelector(".openMenu");
+const closeButton = document.querySelector(".openMenu button");
 
 //adicionando funçao para abrir o menu
-menu.addEventListener('click', () => {
-    removeClass.classList.remove('active')
-    removeClass.classList.add('close')
+menuButton.addEventListener("click", () => {
+  menuModal.classList.add("active");
+});
 
-    openMenu.classList.remove('close')
-} )
-
+//adicionando funçao de fechar o menu
+closeButton.addEventListener("click", () => {
+    menuModal.classList.remove("active");
+});
