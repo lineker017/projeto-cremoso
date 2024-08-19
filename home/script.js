@@ -15,9 +15,22 @@ closeButton.addEventListener("click", () => {
 
 let currentSlide = 0
 
+
+function creatDots() {
+  const slides = document.querySelectorAll(".carousel-item")
+  const indicators = document.querySelector(".carousel-indicators")
+  
+  slides.forEach((slide, index) => {
+    const dot = document.createElement("span")
+    dot.classList.add("dot")
+    indicators.appendChild(dot)
+  });
+}
+
 function showSlide(index) {
   const slides = document.querySelectorAll(".carousel-item")
-
+  const dots = document.querySelectorAll(".dot")
+  
   if(index >= slides.length) {
     currentSlide = 0
   } else if(index < 0) {
@@ -26,8 +39,16 @@ function showSlide(index) {
     currentSlide = index
   }
 
+  dots.forEach((dot, i) => {
+    dot.className = dot.classList.remove("active")
+
+    if(i === currentSlide) {
+      dot.classList.add("active")
+    }
+  })
+
   const offset = -currentSlide *100
-  document.querySelector(".carousel-content").style.transform = `translateX(${offset}%)`
+  document.querySelector(".carousel-content").style.transform = `translateX(${offset}%)`  
 }
 
 function nextSlide() {
@@ -37,5 +58,10 @@ function nextSlide() {
 function prevSlide() {
   showSlide(currentSlide -1)
 }
+
+creatDots()
+
+
+
 
 
