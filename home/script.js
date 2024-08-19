@@ -13,16 +13,17 @@ closeButton.addEventListener("click", () => {
   menuModal.classList.remove("active");
 });
 
-let currentSlide = 0
+let currentSlideIndex = 0
 
 
 function creatDots() {
   const slides = document.querySelectorAll(".carousel-item")
   const indicators = document.querySelector(".carousel-indicators")
   
-  slides.forEach((slide, index) => {
+  slides.forEach((_, index) => {
     const dot = document.createElement("span")
     dot.classList.add("dot")
+    dot.setAttribute("onclick", `currentSlide(${index})`)
     indicators.appendChild(dot)
   });
 }
@@ -32,34 +33,39 @@ function showSlide(index) {
   const dots = document.querySelectorAll(".dot")
   
   if(index >= slides.length) {
-    currentSlide = 0
+    currentSlideIndex = 0
   } else if(index < 0) {
-    currentSlide = slides.length - 1
+    currentSlideIndex = slides.length - 1
   } else {
-    currentSlide = index
+    currentSlideIndex = index
   }
 
   dots.forEach((dot, i) => {
-    dot.className = dot.classList.remove("active")
+    dot.classList.remove("active")
 
-    if(i === currentSlide) {
+    if(i === currentSlideIndex) {
       dot.classList.add("active")
     }
   })
 
-  const offset = -currentSlide *100
+  const offset = -currentSlideIndex *100
   document.querySelector(".carousel-content").style.transform = `translateX(${offset}%)`  
 }
 
 function nextSlide() {
-  showSlide(currentSlide +1)
+  showSlide(currentSlideIndex +1)
 }
 
 function prevSlide() {
-  showSlide(currentSlide -1)
+  showSlide(currentSlideIndex -1)
+}
+
+function currentSlide(index) {
+  showSlide(index)
 }
 
 creatDots()
+showSlide(0)
 
 
 
