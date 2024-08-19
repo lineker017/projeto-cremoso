@@ -1,4 +1,8 @@
 
+body {
+  height: 100vh;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -37,7 +41,7 @@ header  button {
   height: 100vh;
 
   position: fixed;
-  top: -100%;
+  top: -120%;
   z-index: 999;
   background-color: MediumOrchid;
   transition: top 0.5s ease-in-out;
@@ -87,4 +91,59 @@ header  button {
     color: red;
   }
 }
+
+.carousel {
+  position: relative;
+
+  width: 100%;
+  height: calc(100vh - 137px);
+  overflow: hidden;
+
+  & button {
+    border: 0;
+    cursor: pointer;
+  }
+}
+
+.carousel-content {
+  display: flex;
+
+  width: 300%;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background-color: transparent;
+}
+
+.carousel-item {
+  flex: 1 0 100%;
+  width: 100%;
+  height: 100%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+
+
 
